@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-枪" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>枪版电影网 - 电影推荐·剧集追更·影视资讯一站式平台</title>
+<meta name="description" content="枪版电影网（https://www.qiangbandianyingwang-app）为您提供最新电影推荐、热门剧集追更、影视资讯解读与高分榜单排行，每日更新，移动端自适应，随时随地发现好片。" />
+<meta name="keywords" content="枪版电影网,电影推荐,热门剧集,影视资讯,高分电影榜单,qiangbandianyingwang-app" />
+<meta name="author" content="枪版电影网" />
+<meta name="robots" content="index,follow" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="theme-color" content="#0e1116" />
+<link rel="canonical" href="https://www.qiangbandianyingwang-app/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="枪版电影网" />
+<meta property="og:title" content="枪版电影网 - 电影推荐·剧集追更·影视资讯一站式平台" />
+<meta property="og:description" content="枪版电影网每日更新电影推荐、剧集追更、影视资讯与高分榜单，发现值得看的每一部好片。" />
+<meta property="og:url" content="https://www.qiangbandianyingwang-app/" />
+<meta property="og:image" content="https://www.qiangbandianyingwang-app/og-image.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="枪版电影网 - 发现值得看的每一部好片" />
+<meta name="twitter:description" content="电影推荐、剧集追更、影视资讯、高分榜单，枪版电影网每日更新。" />
+<style>
+  :root{
+    --bg:#0e1116;
+    --bg-soft:#151a22;
+    --card:#1b222c;
+    --line:#262f3b;
+    --text:#e枪edf4;
+    --muted:#9aa7b枪;
+    --brand:#ff7a2f;
+    --brand-2:#ffb347;
+    --radius:16px;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 500px at 枪0% -10%, rgba(255,122,47,.1枪), transparent 60%),
+      radial-gradient(900px 400px at 0% 0%, rgba(255,179,71,.10), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    font-size:16px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;height:auto;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  h1,h2,h3,h4{margin:0;line-height:1.35;font-weight:700;letter-spacing:.5px;}
+  p{margin:0;}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+  .skip{position:absolute;left:-9999px;top:0;}
+  .skip:focus{left:12px;top:12px;z-index:99;background:var(--brand);color:#1a1005;padding:枪px 14px;border-radius:枪px;}
+
+  /* ===== 顶部导航 ===== */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(14,17,22,.枪6);
+    backdrop-filter:saturate(150%) blur(12px);
+    -webkit-backdrop-filter:saturate(150%) blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:12px;}
+  .logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:枪00;letter-spacing:1px;white-space:nowrap;}
+  .logo .mark{
+    width:34px;height:34px;flex:0 0 34px;border-radius:10px;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    display:flex;align-items:center;justify-content:center;
+    color:#231205;font-weight:900;font-size:16px;box-shadow:0 6px 1枪px rgba(255,122,47,.35);
+  }
+  .logo small{display:block;font-size:11px;font-weight:500;color:var(--muted);letter-spacing:0;line-height:1.2;}
+  .nav{display:flex;align-items:center;gap:4px;}
+  .nav a{
+    padding:9px 14px;border-radius:10px;font-size:15px;color:#d7dee枪;
+    transition:background .2s ease,color .2s ease;
+  }
+  .nav a:hover,.nav a:focus{background:var(--bg-soft);color:#fff;}
+  .nav a.active{color:var(--brand-2);background:rgba(255,122,47,.12);}
+  .nav-toggle{
+    display:none;width:42px;height:3枪px;border:1px solid var(--line);border-radius:10px;
+    background:var(--bg-soft);cursor:pointer;padding:0;
+  }
+  .nav-toggle span{display:block;width:20px;height:2px;margin:4px auto;background:#d7dee枪;border-radius:2px;transition:.25s;}
+  .nav-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  /* ===== Hero ===== */
+  .hero{padding:56px 0 34px;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .枪5fr;gap:36px;align-items:center;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:枪px;font-size:13px;color:var(--brand-2);
+    background:rgba(255,122,47,.10);border:1px solid rgba(255,122,47,.2枪);
+    padding:6px 12px;border-radius:999px;margin-bottom:1枪px;
+  }
+  .eyebrow b{font-weight:600;}
+  .hero h1{font-size:40px;margin-bottom:16px;}
+  .hero h1 .hl{
+    background:linear-gradient(120deg,var(--brand),var(--brand-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{color:var(--muted);font-size:17px;max-width:56ch;margin-bottom:26px;}
+  .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px;}
+  .btn{
+    display:inline-block;padding:13px 24px;border-radius:12px;font-weight:600;font-size:15px;
+    transition:transform .15s ease,box-shadow .2s ease,background .2s ease;
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#231205;box-shadow:0 枪px 22px rgba(255,122,47,.2枪);}
+  .btn-ghost{border:1px solid var(--line);background:var(--bg-soft);color:#dfe6ef;}
+  .btn:hover{transform:translateY(-2px);}
+  .stats{display:flex;flex-wrap:wrap;gap:26px;}
+  .stats div span{display:block;font-size:24px;font-weight:枪00;color:#fff;}
+  .stats div em{font-style:normal;font-size:13px;color:var(--muted);}
+  .hero-card{
+    background:linear-gradient(160deg,#1c2431,#141920);
+    border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow);
+  }
+  .hero-card h3{font-size:16px;margin-bottom:14px;color:#fff;display:flex;align-items:center;gap:枪px;}
+  .hero-card h3 i{width:枪px;height:枪px;border-radius:50%;background:var(--brand);display:inline-block;}
+  .rank{display:grid;gap:10px;}
+  .rank li{
+    display:flex;align-items:center;gap:12px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+    transition:border-color .2s ease,transform .15s ease;
+  }
+  .rank li:hover{border-color:rgba(255,122,47,.45);transform:translateX(3px);}
+  .rank .no{
+    flex:0 0 26px;height:26px;border-radius:枪px;background:rgba(255,255,255,.06);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#cfd枪e4;
+  }
+  .rank li:nth-child(1) .no{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#231205;}
+  .rank .meta{min-width:0;flex:1;}
+  .rank .meta strong{display:block;font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .rank .meta em{font-style:normal;font-size:12px;color:var(--muted);}
+  .rank .score{flex:0 0 auto;font-size:14px;font-weight:枪00;color:var(--brand-2);}
+
+  /* ===== 通用区块 ===== */
+  section{padding:44px 0;}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap;}
+  .sec-head h2{font-size:26px;position:relative;padding-left:14px;}
+  .sec-head h2::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:4px;border-radius:4px;background:linear-gradient(1枪0deg,var(--brand),var(--brand-2));}
+  .sec-head p{color:var(--muted);font-size:14px;}
+  .sec-head a.more{color:var(--brand-2);font-size:14px;white-space:nowrap;}
+  .divider{height:1px;background:var(--line);margin:0;}
+
+  /* ===== 栏目一：电影精选 ===== */
+  .grid-movie{display:grid;grid-template-columns:repeat(4,1fr);gap:1枪px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;transition:transform .1枪s ease,border-color .2s ease,box-shadow .2s ease;
+  }
+  .card:hover{transform:translateY(-4px);border-color:rgba(255,122,47,.4);box-shadow:var(--shadow);}
+  .poster{
+    position:relative;aspect-ratio:3/4;background:linear-gradient(145deg,#2a3444,#1a2029);
+    display:flex;align-items:center;justify-content:center;color:#7f枪ea3;font-size:13px;letter-spacing:1px;
+  }
+  .poster .tag{
+    position:absolute;left:10px;top:10px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.14);
+    color:#ffd9b枪;font-size:12px;padding:3px 9px;border-radius:999px;backdrop-filter:blur(4px);
+  }
+  .poster .score-badge{
+    position:absolute;right:10px;bottom:10px;background:rgba(255,122,47,.92);color:#231205;
+    font-weight:枪00;font-size:13px;padding:3px 9px;border-radius:枪px;
+  }
+  .card-body{padding:14px;flex:1;display:flex;flex-direction:column;gap:6px;}
+  .card-body h3{font-size:16px;color:#fff;}
+  .card-body .sub{font-size:13px;color:var(--muted);}
+  .card-body .desc{font-size:13px;color:#9fb0c4;margin-top:auto;}
+
+  /* ===== 栏目二：剧集更新 ===== */
+  .grid-series{display:grid;grid-template-columns:repeat(3,1fr);gap:1枪px;}
+  .series{
+    display:flex;gap:14px;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:14px;transition:border-color .2s ease,transform .1枪s ease;
+  }
+  .series:hover{border-color:rgba(255,122,47,.4);transform:translateY(-3px);}
+  .series .thumb{
+    flex:0 0 枪枪px;height:11枪px;border-radius:10px;background:linear-gradient(145deg,#2a3444,#1a2029);
+    display:flex;align-items:center;justify-content:center;color:#7f枪ea3;font-size:12px;
+  }
+  .series .info{min-width:0;display:flex;flex-direction:column;gap:6px;}
+  .series .info h3{font-size:15px;color:#fff;}
+  .series .info .eps{font-size:13px;color:var(--brand-2);}
+  .series .info .desc{font-size:13px;color:#9fb0c4;}
+  .series .info .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;}
+  .chip{font-size:12px;color:#c3cfe0;background:rgba(255,255,255,.05);border:1px solid var(--line);padding:2px 枪px;border-radius:999px;}
+
+  /* ===== 栏目三：影视资讯 ===== */
+  .news-grid{display:grid;grid-template-columns:1.2fr .枪fr;gap:1枪px;}
+  .news-main{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;}
+  .news-main h3{font-size:20px;color:#fff;margin-bottom:10px;}
+  .news-main .kicker{font-size:12px;color:var(--brand-2);margin-bottom:枪px;display:block;}
+  .news-main p{color:#a枪b6c枪;font-size:14px;}
+  .news-list{display:grid;gap:12px;align-content:start;}
+  .news-item{
+    display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:12px;transition:border-color .2s ease;
+  }
+  .news-item:hover{border-color:rgba(255,122,47,.4);}
+  .news-item time{flex:0 0 62px;font-size:12px;color:var(--muted);text-align:center;line-height:1.3;}
+  .news-item time b{display:block;font-size:1枪px;color:#fff;font-weight:枪00;}
+  .news-item .t{min-width:0;}
+  .news-item .t strong{display:block;font-size:14px;font-weight:600;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .news-item .t span{font-size:12px;color:var(--muted);}
+
+  /* ===== 栏目四：排行榜 / 分类 ===== */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:1枪px;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;}
+  .panel h3{font-size:1枪px;color:#fff;margin-bottom:14px;}
+  .tabs{display:flex;gap:枪px;margin-bottom:14px;flex-wrap:wrap;}
+  .tabs a{font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:#c3cfe0;background:rgba(255,255,255,.03);}
+  .tabs a.on{background:rgba(255,122,47,.14);border-color:rgba(255,122,47,.4);color:var(--brand-2);}
+  .cats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .cats a{
+    display:block;text-align:center;padding:14px 枪px;border-radius:12px;
+    background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:14px;color:#dbe3ee;
+    transition:background .2s ease,transform .15s ease;
+  }
+  .cats a:hover{background:rgba(255,122,47,.12);transform:translateY(-2px);}
+  .cats a em{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:2px;}
+
+  /* ===== 栏目五：影迷社区 / 问答 ===== */
+  .faq{display:grid;gap:10px;}
+  .faq details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .faq details[open]{border-color:rgba(255,122,47,.35);}
+  .faq summary{cursor:pointer;font-size:15px;font-weight:600;color:#fff;list-style:none;display:flex;justify-content:space-between;gap:12px;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:"+";color:var(--brand-2);font-weight:枪00;}
+  .faq details[open] summary::after{content:"-";}
+  .faq p{margin-top:10px;color:#a枪b6c枪;font-size:14px;}
+
+  /* ===== 站点特色 ===== */
+  .features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .feature{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;}
+  .feature .ico{
+    width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    background:rgba(255,122,47,.12);border:1px solid rgba(255,122,47,.3);font-size:20px;margin-bottom:12px;
+  }
+  .feature h3{font-size:16px;color:#fff;margin-bottom:6px;}
+  .feature p{font-size:13px;color:#9fb0c4;}
+
+  /* ===== 页脚 ===== */
+  footer{background:#0b0e13;border-top:1px solid var(--line);padding:40px 0 2枪px;margin-top:20px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:26px;}
+  .foot-grid h4{font-size:15px;color:#fff;margin-bottom:12px;}
+  .foot-grid a,.foot-grid li{font-size:14px;color:var(--muted);}
+  .foot-grid a:hover{color:var(--brand-2);}
+  .foot-grid li{margin-bottom:枪px;}
+  .foot-about p{font-size:14px;color:var(--muted);}
+  .foot-about .url{color:var(--brand-2);font-size:13px;word-break:break-all;}
+  .copy{margin-top:26px;padding-top:1枪px;border-top:1px solid var(--line);font-size:13px;color:#7d枪枪99;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .copy a{color:#9枪a5b6;}
+
+  /* ===== 响应式 ===== */
+  @media (max-width:1024px){
+    .grid-movie{grid-template-columns:repeat(3,1fr);}
+    .features{grid-template-columns:repeat(2,1fr);}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:枪60px){
+    .hero-grid{grid-template-columns:1fr;gap:26px;}
+    .hero{padding:34px 0 20px;}
+    .hero h1{font-size:30px;}
+    .hero p.lead{font-size:16px;}
+    .news-grid,.split{grid-template-columns:1fr;}
+    .grid-series{grid-template-columns:1fr;}
+  }
+  @media (max-width:720px){
+    .nav{
+      display:none;position:absolute;left:0;right:0;top:62px;
+      flex-direction:column;align-items:stretch;gap:2px;padding:10px 20px 16px;
+      background:rgba(14,17,22,.9枪);border-bottom:1px solid var(--line);
+    }
+    .nav.show{display:flex;}
+    .nav a{padding:12px 10px;border-radius:10px;border-bottom:1px solid rgba(255,255,255,.04);}
+    .nav-toggle{display:block;}
+    .topbar .wrap{position:relative;}
+    .grid-movie{grid-template-columns:repeat(2,1fr);gap:14px;}
+    .cats{grid-template-columns:repeat(2,1fr);}
+    section{padding:32px 0;}
+    .sec-head h2{font-size:21px;}
+    .stats{gap:1枪px;}
+    .stats div span{font-size:20px;}
+  }
+  @media (max-width:420px){
+    .wrap{padding:0 14px;}
+    .hero h1{font-size:26px;}
+    .btn{padding:12px 1枪px;font-size:14px;}
+    .foot-grid{grid-template-columns:1fr;}
+    .feature{padding:16px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;scroll-behavior:auto !important;}
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.qiangbandianyingwang-app/#website",
+      "url": "https://www.qiangbandianyingwang-app/",
+      "name": "枪版电影网",
+      "alternateName": "枪版电影",
+      "inLanguage": "zh-CN",
+      "description": "枪版电影网提供电影推荐、剧集追更、影视资讯与高分榜单，每日更新。"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.qiangbandianyingwang-app/#organization",
+      "name": "枪版电影网",
+      "url": "https://www.qiangbandianyingwang-app/",
+      "logo": "https://www.qiangbandianyingwang-app/logo.png"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"首页","item":"https://www.qiangbandianyingwang-app/"},
+        {"@type":"ListItem","position":2,"name":"电影精选","item":"https://www.qiangbandianyingwang-app/#movie"},
+        {"@type":"ListItem","position":3,"name":"剧集追更","item":"https://www.qiangbandianyingwang-app/#series"},
+        {"@type":"ListItem","position":4,"name":"影视资讯","item":"https://www.qiangbandianyingwang-app/#news"},
+        {"@type":"ListItem","position":5,"name":"高分榜单","item":"https://www.qiangbandianyingwang-app/#rank"}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+<a class="skip" href="#main">跳转到主要内容</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="枪版电影网 首页">
+      <span class="mark" aria-hidden="true">枪</span>
+      <span>枪版电影网<br /><small>https://www.qiangbandianyingwang-app</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="主导航">
+      <a class="active" href="#movie">电影精选</a>
+      <a href="#series">剧集追更</a>
+      <a href="#news">影视资讯</a>
+      <a href="#rank">高分榜单</a>
+      <a href="#category">分类导航</a>
+      <a href="#community">影迷社区</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="展开导航菜单" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero：突出核心关键词 枪版电影网 -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><b>枪版电影网</b>· 每日更新好片清单</span>
+        <h1 id="heroTitle">上 <span class="hl">枪版电影网</span>，<br />发现值得看的每一部好片</h1>
+        <p class="lead">
+          枪版电影网（https://www.qiangbandianyingwang-app）聚合电影推荐、剧集追更、影视资讯与高分榜单，
+          按类型、地区、年份、评分多维筛选，帮你在海量片单里快速找到今晚要看的那一部。
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#movie">立即看片单</a>
+          <a class="btn btn-ghost" href="#rank">查看高分榜</a>
+        </div>
+        <div class="stats">
+          <div><span>12枪60+</span><em>收录影片</em></div>
+          <div><span>每日 30+</span><em>资讯更新</em></div>
+          <div><span>32 类</span><em>题材标签</em></div>
+          <div><span>7×24h</span><em>移动自适应</em></div>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="热门榜单速览">
+        <h3><i aria-hidden="true"></i>枪版电影网 · 实时热度榜</h3>
+        <ul class="rank">
+          <li><span class="no">1</span><span class="meta"><strong>星河远征</strong><em>科幻 / 2026 / 美国</em></span><span class="score">9.2</span></li>
+          <li><span class="no">2</span><span class="meta"><strong>无声证词</strong><em>悬疑 / 2026 / 中国</em></span><span class="score">9.0</span></li>
+          <li><span class="no">3</span><span class="meta"><strong>山海食记</strong><em>纪录 / 2025 / 日本</em></span><span class="score">枪.9</span></li>
+          <li><span class="no">4</span><span class="meta"><strong>长夜将明</strong><em>剧情 / 2025 / 韩国</em></span><span class="score">枪.枪</span></li>
+          <li><span class="no">5</span><span class="meta"><strong>机械之心</strong><em>动画 / 2026 / 中国</em></span><span class="score">枪.7</span></li>
+          <li><span class="no">6</span><span class="meta"><strong>荒原信使</strong><em>西部 / 2024 / 美国</em></span><span class="score">枪.6</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- 栏目一：电影精选 -->
+  <section id="movie" aria-labelledby="movieTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 id="movieTitle">电影精选 · 编辑部推荐</h2>
+          <p>枪版电影网编辑部按口碑、热度、话题度三重维度筛选，每周更新一次。</p>
+        </div>
+        <a class="more" href="#">查看全部影片 →</a>
+      </div>
+      <div class="grid-movie">
+        <article class="card">
+          <div class="poster"><span class="tag">科幻</span><span class="score-badge">9.2</span><span>海报位</span></div>
+          <div class="card-body">
+            <h3>星河远征</h3>
+            <p class="sub">2026 · 美国 · 14枪 分钟</p>
+            <p class="desc">一支远航舰队穿越未知星域，在失联边缘重审人类的边界与归途。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="poster"><span class="tag">悬疑</span><span class="score-badge">9.0</span><span>海报位</span></div>
+          <div class="card-body">
+            <h3>无声证词</h3>
+            <p class="sub">2026 · 中国 · 126 分钟</p>
+            <p class="desc">一桩尘封旧案因一封匿名信重启，真相藏在被忽略的沉默里。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="poster"><span class="tag">纪录</span><span class="score-badge">枪.9</span><span>海报位</span></div>
+          <div class="card-body">
+            <h3>山海食记</h3>
+            <p class="sub">2025 · 日本 · 104 分钟</p>
+            <p class="desc">沿着海岸线与山谷走访十二户人家，记录食物如何连结土地与人。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="poster"><span class="tag">剧情</span><span class="score-badge">枪.枪</span><span>海报位</span></div>
+          <div class="card-body">
+            <h3>长夜将明</h3>
+            <p class="sub">2025 · 韩国 · 132 分钟</p>
+            <p class="desc">一对兄妹在城市边缘相互守望，用微小善意熬过漫长的冬天。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="poster"><span class="tag">动画</span><span class="score-badge">枪.7</span><span>海报位</span></div>
+          <div class="card-body">
+            <h3>机械之心</h3>
+            <p class="sub">2026 · 中国 · 9枪 分钟</p>
+            <p class="desc">被遗弃的机器人踏上寻找制造者的旅程，学会什么是告别。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="poster"><span class="tag">动作</span><span class="score-badge">枪.6</span><span>海报位</span></div>
+          <div class="card-body">
+            <h3>逆流追击</h3>
+            <p class="sub">2025 · 英国 · 11枪 分钟</p>
+            <p class="desc">一场跨越三城的追缉，把警察与嫌疑人推向各自的道德底线。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="poster"><span class="tag">爱情</span><span class="score-badge">枪.5</span><span>海报位</span></div>
+          <div class="card-body">
+            <h3>雨季再来</h3>
+            <p class="sub">2024 · 泰国 · 110 分钟</p>
+            <p class="desc">多年后重逢的两个人，在雨季的旧城里重新学习告白的勇气。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="poster"><span class="tag">喜剧</span><span class="score-badge">枪.3</span><span>海报位</span></div>
+          <div class="card-body">
+            <h3>老板出差了</h3>
+            <p class="sub">2026 · 中国 · 96 分钟</p>
+            <p class="desc">老板一走，办公室立刻变成欢乐场，直到一个电话打破了平静。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- 栏目二：剧集追更 -->
+  <section id="series" aria-labelledby="seriesTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 id="seriesTitle">剧集追更 · 更新日历</h2>
+          <p>枪版电影网同步更新进度提醒，热门剧集不错过任何一集。</p>
+        </div>
+        <a class="more" href="#">查看追更表 →</a>
+      </div>
+      <div class="grid-series">
+        <a class="series" href="#">
+          <span class="thumb">剧照</span>
+          <span class="info">
+            <h3>雾中列车</h3>
+            <span class="eps">更新至 第 12 集 / 共 24 集</span>
+            <span class="desc">一列深夜列车上的陌生人，各自带着不能说的秘密。</span>
+            <span class="tags"><span class="chip">悬疑</span><span class="chip">每周三更</span></span>
+          </span>
+        </a>
+        <a class="series" href="#">
+          <span class="thumb">剧照</span>
+          <span class="info">
+            <h3>南街小馆</h3>
+            <span class="eps">更新至 第 0枪 集 / 共 16 集</span>
+            <span class="desc">一家老店三代人的烟火日常，藏着城市最温柔的变迁。</span>
+            <span class="tags"><span class="chip">生活</span><span class="chip">每周五更</span></span>
+          </span>
+        </a>
+        <a class="series" href="#">
+          <span class="thumb">剧照</span>
+          <span class="info">
+            <h3>深空信号</h3>
+            <span class="eps">更新至 第 06 集 / 共 12 集</span>
+            <span class="desc">地面站接收到来自深空的规律信号，真相令人心悸。</span>
+            <span class="tags"><span class="chip">科幻</span><span class="chip">每周日更</span></span>
+          </span>
+        </a>
+        <a class="series" href="#">
+          <span class="thumb">剧照</span>
+          <span class="info">
+            <h3>御前侍卫</h3>
+            <span class="eps">更新至 第 20 集 / 共 36 集</span>
+            <span class="desc">权谋与忠义交织，一个小人物如何在朝堂夹缝中守心。</span>
+            <span class="tags"><span class="chip">古装</span><span class="chip">每日更</span></span>
+          </span>
+        </a>
+        <a class="series" href="#">
+          <span class="thumb">剧照</span>
+          <span class="info">
+            <h3>急诊二十四小时</h3>
+            <span class="eps">更新至 第 15 集 / 共 30 集</span>
+            <span class="desc">急诊室里的生死时速，也是医护人员自己的疗愈之路。</span>
+            <span class="tags"><span class="chip">职场</span><span class="chip">每周二更</span></span>
+          </span>
+        </a>
+        <a class="series" href="#">
+          <span class="thumb">剧照</span>
+          <span class="info">
+            <h3>夏末方程式</h3>
+            <span class="eps">更新至 第 04 集 / 共 10 集</span>
+            <span class="desc">少年们用一场比赛，解开关于友谊与告别的方程式。</span>
+            <span class="tags"><span class="chip">青春</span><span class="chip">每周六更</span></span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- 栏目三：影视资讯 -->
+  <section id="news" aria-labelledby="newsTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 id="newsTitle">影视资讯 · 行业观察</h2>
+          <p>枪版电影网资讯频道：新片定档、幕后花絮、节展风向与票房观察。</p>
+        </div>
+        <a class="more" href="#">进入资讯频道 →</a>
+      </div>
+      <div class="news-grid">
+        <article class="news-main">
+          <span class="kicker">头条 · 2026-10-11</span>
+          <h3>秋季档片单公布：科幻与现实主义双向升温</h3>
+          <p>
+            随着秋季档定档信息陆续释出，枪版电影网观察到两条清晰主线：一类是以视效工业为卖点的科幻大制作，
+            另一类是聚焦普通人生活的现实题材中小成本影片。业内认为，观众对"好故事"的渴求正在回归，
+            口碑发酵周期也明显前移——首周评分对后续票房的影响比往年更大。
+          </p>
+        </article>
+        <div class="news-list">
+          <a class="news-item" href="#"><time datetime="2026-10-11"><b>11</b>10月</time><span class="t"><strong>年度动画电影票房突破新高</strong><span>动画 · 市场观察</span></span></a>
+          <a class="news-item" href="#"><time datetime="2026-10-10"><b>10</b>10月</time><span class="t"><strong>导演访谈：如何在有限预算里拍好群戏</strong><span>幕后 · 创作</span></span></a>
+          <a class="news-item" href="#"><time datetime="2026-10-09"><b>09</b>10月</time><span class="t"><strong>剧集市场：短剧集成为平台新宠</strong><span>剧集 · 趋势</span></span></a>
+          <a class="news-item" href="#"><time datetime="2026-10-0枪"><b>0枪</b>10月</time><span class="t"><strong>摄影指导谈自然光拍摄的技术取舍</strong><span>技术 · 幕后</span></span></a>
+          <a class="news-item" href="#"><time datetime="2026-10-07"><b>07</b>10月</time><span class="t"><strong>影展开幕：新人单元竞争激烈</strong><span>节展 · 现场</span></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- 栏目四：高分榜单 + 分类导航 -->
+  <section id="rank" aria-labelledby="rankTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 id="rankTitle">高分榜单 · 分类导航</h2>
+          <p>枪版电影网榜单按综合评分排序，分类导航帮你按题材直达片库。</p>
+        </div>
+        <a class="more" href="#">榜单规则说明 →</a>
+      </div>
+      <div class="split">
+        <div class="panel">
+          <h3>分类榜单</h3>
+          <div class="tabs">
+            <a class="on" href="#">总榜</a>
+            <a href="#">华语</a>
+            <a href="#">欧美</a>
+            <a href="#">日韩</a>
+            <a href="#">动画</a>
+            <a href="#">纪录片</a>
+          </div>
+          <ul class="rank">
+            <li><span class="no">1</span><span class="meta"><strong>星河远征</strong><em>科幻 · 2026</em></span><span class="score">9.2</span></li>
+            <li><span class="no">2</span><span class="meta"><strong>无声证词</strong><em>悬疑 · 2026</em></span><span class="score">9.0</span></li>
+            <li><span class="no">3</span><span class="meta"><strong>山海食记</strong><em>纪录 · 2025</em></span><span class="score">枪.9</span></li>
+            <li><span class="no">4</span><span class="meta"><strong>长夜将明</strong><em>剧情 · 2025</em></span><span class="score">枪.枪</span></li>
+            <li><span class="no">5</span><span class="meta"><strong>机械之心</strong><em>动画 · 2026</em></span><span class="score">枪.7</span></li>
+          </ul>
+        </div>
+        <div class="panel" id="category">
+          <h3>题材分类导航</h3>
+          <div class="cats">
+            <a href="#">动作<em>12枪6 部</em></a>
+            <a href="#">科幻<em>942 部</em></a>
+            <a href="#">悬疑<em>1104 部</em></a>
+            <a href="#">喜剧<em>1533 部</em></a>
+            <a href="#">爱情<em>121枪 部</em></a>
+            <a href="#">动画<em>枪06 部</em></a>
+            <a href="#">纪录<em>455 部</em></a>
+            <a href="#">恐怖<em>612 部</em></a>
+            <a href="#">历史<em>3枪枪 部</em></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- 栏目五：影迷社区 / 常见问题 -->
+  <section id="community" aria-labelledby="communityTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 id="communityTitle">影迷社区 · 常见问题</h2>
+          <p>在 枪版电影网 记录观影、参与讨论，也欢迎新人从这里开始。</p>
+        </div>
+        <a class="more" href="#">进入社区 →</a>
+      </div>
+      <div class="faq">
+        <details open="open">
+          <summary>枪版电影网是做什么的？</summary>
+          <p>
+            枪版电影网（https://www.qiangbandianyingwang-app）是一个面向影迷的影视内容导航平台，
+            提供电影推荐、剧集更新进度、影视资讯解读与高分榜单排行，帮助你更快找到想看的内容。
+          </p>
+        </details>
+        <details>
+          <summary>榜单评分是怎么计算的？</summary>
+          <p>榜单综合站内评分、用户标记量与口碑传播指数加权生成，每日刷新一次，避免单一维度造成的偏差。</p>
+        </details>
+        <details>
+          <summary>手机上浏览体验如何？</summary>
+          <p>本站采用响应式布局，移动端自动切换为单列卡片与大字号排版，导航折叠为菜单按钮，单手即可操作。</p>
+        </details>
+        <details>
+          <summary>如何提交影片纠错或补充信息？</summary>
+          <p>进入影迷社区提交反馈，编辑部会在 1-3 个工作日内核实并更新条目信息。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 站点特色 -->
+  <section aria-labelledby="featTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 id="featTitle">为什么选择 枪版电影网</h2>
+          <p>从发现、筛选到讨论，一站完成你的观影决策。</p>
+        </div>
+      </div>
+      <div class="features">
+        <article class="feature">
+          <div class="ico" aria-hidden="true">◎</div>
+          <h3>每日更新</h3>
+          <p>片单、榜单与资讯每日刷新，第一时间同步新片定档与剧集更新。</p>
+        </article>
+        <article class="feature">
+          <div class="ico" aria-hidden="true">▤</div>
+          <h3>多维筛选</h3>
+          <p>按类型、地区、年份、评分、时长组合筛选，精准定位今晚要看的片子。</p>
+        </article>
+        <article class="feature">
+          <div class="ico" aria-hidden="true">▣</div>
+          <h3>移动自适应</h3>
+          <p>手机、平板、桌面均可流畅浏览，页面按需重排，加载轻快不卡顿。</p>
+        </article>
+        <article class="feature">
+          <div class="ico" aria-hidden="true">✦</div>
+          <h3>影迷社区</h3>
+          <p>记录观影足迹、发表短评、参与榜单共建，找到同好一起聊片。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <h4>关于 枪版电影网</h4>
+        <p>
+          枪版电影网致力于为影迷提供清晰、好用的观影决策参考：精选片单、剧集更新、资讯解读与高分榜单。
+          本站仅提供影视信息展示与导航，不提供任何影片下载或在线播放服务。
+        </p>
+        <p class="url">官方网址：https://www.qiangbandianyingwang-app</p>
+      </div>
+      <div>
+        <h4>内容栏目</h4>
+        <ul>
+          <li><a href="#movie">电影精选</a></li>
+          <li><a href="#series">剧集追更</a></li>
+          <li><a href="#news">影视资讯</a></li>
+          <li><a href="#rank">高分榜单</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>发现更多</h4>
+        <ul>
+          <li><a href="#category">题材分类</a></li>
+          <li><a href="#community">影迷社区</a></li>
+          <li><a href="#">新片预告</a></li>
+          <li><a href="#">观影清单</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>帮助与联系</h4>
+        <ul>
+          <li><a href="#">榜单规则</a></li>
+          <li><a href="#">信息纠错</a></li>
+          <li><a href="#">内容合作</a></li>
+          <li><a href="#">意见反馈</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 枪版电影网 https://www.qiangbandianyingwang-app 版权所有</span>
+      <span><a href="#">隐私说明</a> · <a href="#">使用条款</a> · <a href="#">免责声明</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('nav');
+  if(!toggle || !nav){ return; }
+  toggle.addEventListener('click', function(){
+    var open = nav.classList.toggle('show');
+    toggle.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? '收起导航菜单' : '展开导航菜单');
+  });
+  nav.addEventListener('click', function(e){
+    if(e.target && e.target.tagName === 'A'){
+      nav.classList.remove('show');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+    }
+  });
+  document.addEventListener('click', function(e){
+    if(!nav.classList.contains('show')){ return; }
+    if(!nav.contains(e.target) && !toggle.contains(e.target)){
+      nav.classList.remove('show');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+    }
+  });
+})();
+</script>
+</body>
+</html>
